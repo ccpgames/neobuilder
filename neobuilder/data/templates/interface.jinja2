@@ -1,0 +1,22 @@
+{% from 'macros/indentclude.jinja2' import indentclude with context %}
+# Auto-Generated file - DO NOT EDIT!
+# Source module: {{ module_full_name }}
+# Generated at: {{ iso_timestamp }}
+__all__ = [
+{% for a in all_clause %}
+    '{{ a }}',
+{% endfor %}
+]
+import datetime
+from typing import *
+from protoplasm import plasm
+
+{% for import_line in import_lines %}
+{{ import_line }}
+{% endfor %}
+
+import logging
+log = logging.getLogger(__name__)
+
+
+{{ services }}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package sandbox.test;
+
+import "sandbox/test/enums.proto";
+
+
+message MessageWithImportedEnum {
+    sandbox.test.ExternalEnum my_external_enum = 1;
+}

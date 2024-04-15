@@ -1,0 +1,7 @@
+__version__ = '{{ version }}'{% if version == '' %}  # NO VERSION NUMBERS FOUND?!? :({% endif +%}
+__protoplasm_version__ = '{{ protoplasm_version }}'
+__neobuilder_version__ = '{{ neobuilder_version }}'
+
+
+def load_symbols():
+    from {{ package_name }} import __everything__

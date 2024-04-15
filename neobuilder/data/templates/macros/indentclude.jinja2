@@ -1,0 +1,2 @@
+{%- macro _inc(file_name, this) -%}{% include file_name with context %}{% endmacro %}
+{%- macro indentclude(file_name, spaces=4, this={}) -%}{{ _inc(file_name, this)|indent(spaces) }}{%- endmacro -%}

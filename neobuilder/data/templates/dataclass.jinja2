@@ -1,0 +1,12 @@
+{% from 'macros/indentclude.jinja2' import indentclude with context %}
+@dataclasses.dataclass
+class {{ class_name }}(bases.DataclassBase):
+    __proto_cls__ = pb2.{{ proto_cls_name }}
+
+    {{ indentclude('parts/_nested_messages.jinja2', 4) }}
+
+    {{ indentclude('parts/_enum_map.jinja2', 4) }}
+
+    {% for pf in field_map %}
+    {{ pf }}
+    {% endfor %}

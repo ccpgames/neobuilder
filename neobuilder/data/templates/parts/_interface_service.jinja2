@@ -1,0 +1,6 @@
+{% from 'macros/indentclude.jinja2' import indentclude with context %}
+class {{ service_name }}Interface:
+{% for method in method_list %}
+    {{ indentclude('parts/_interface_method.jinja2', (indent_spaces + 4), method) }}
+
+{% endfor %}

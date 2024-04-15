@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package sandbox.test;
+
+// Documentation above AlphaMessage
+message AlphaMessage {
+
+    // Documentation above my_string in AlphaMessage
+    string my_string = 1;
+
+    // Documentation line 1 above my_number in AlphaMessage
+    // and this is line 2
+    int32 my_number = 2;
+}
