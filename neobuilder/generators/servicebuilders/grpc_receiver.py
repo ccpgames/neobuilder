@@ -15,7 +15,6 @@ class ModuleBuilder(base.AbstractModuleBuilder):
             f'from {self.module.get_package()} import {self.module.get_module_name()} as pb2',
             f'from {self.module.get_package()} import {self.module.get_module_name()}_grpc as pb2_grpc',
             f'from {self.module.get_package()} import {self.module.get_module_name()[:-3]}dc as dc',
-            f'from {self.module.get_package()} import {self.module.get_module_name()[:-3]}api as api',
         }
 
         for s in self.module.service_map.values():
@@ -42,6 +41,7 @@ class ModuleBuilder(base.AbstractModuleBuilder):
     def get_template_context(self) -> Dict:
         d = super().get_template_context()
         d.update({
+            'api_import': f'from {self.module.get_package()} import {self.module.get_module_name()[:-3]}api as api',
             'services': self.render_services(),
             'imports': self.render_imports(),
             'all_list': [f'{svc.service_descriptor.name}GrpcServicer' for svc in self.module.service_map.values()],
@@ -60,7 +60,7 @@ class ServiceBuilder(base.AbstractServiceBuilder):
         i = self.base_indent
         return (
             f'{i}class {self.service.service_descriptor.name}GrpcServicer(plasm.BaseGrpcServicer, pb2_grpc.{self.service.service_descriptor.name}Servicer):\n'
-            f'{i}{__}def __init__(self, implementation: api.{self.service.service_descriptor.name}Interface):\n'
+            f"{i}{__}def __init__(self, implementation: 'api.{self.service.service_descriptor.name}Interface'):\n"
             f'{i}{__}{__}super().__init__(implementation)\n'
             '\n'
             f'{i}{__}def add_to_server(self, server):\n'

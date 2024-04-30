@@ -14,19 +14,19 @@ from sandbox.test import beta_dc as sandbox__test__beta_dc
 from sandbox.test import delta_dc as sandbox__test__delta_dc
 from sandbox.test import nested_dc as sandbox__test__nested_dc
 from sandbox.test import rainbow_dc as sandbox__test__rainbow_dc
-from sandbox.test import service_with_imported_io_api as api
 from sandbox.test import service_with_imported_io_dc as dc
 from sandbox.test import service_with_imported_io_pb2 as pb2
 from sandbox.test import service_with_imported_io_pb2_grpc as pb2_grpc
 if TYPE_CHECKING:
     from grpc import ServicerContext
+    from sandbox.test import service_with_imported_io_api as api
 
 import logging
 log = logging.getLogger(__name__)
 
 
 class ServiceWithImportedInputAndOutputGrpcServicer(plasm.BaseGrpcServicer, pb2_grpc.ServiceWithImportedInputAndOutputServicer):
-    def __init__(self, implementation: api.ServiceWithImportedInputAndOutputInterface):
+    def __init__(self, implementation: 'api.ServiceWithImportedInputAndOutputInterface'):
         super().__init__(implementation)
 
     def add_to_server(self, server):

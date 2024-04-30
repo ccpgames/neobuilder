@@ -61,6 +61,11 @@ class NeoBuilder(object):
                             format='%(levelname)8s - %(message)s')
         log.info(f'Initializing Neobuilder {self.neobuilder_version()}')
 
+        log.debug(f'{self.package=}')
+        log.debug(f'{self.protopath=}')
+        log.debug(f'{self.build_root=}')
+        log.debug(f'{self.proto_include=}')
+
     @staticmethod
     def _get_basic_proto_path() -> str:
         if _PY_3_9_PLUS:
@@ -337,6 +342,7 @@ class NeoBuilder(object):
         else:
             try:
                 p = modules.ProtoModule(m)
+                log.debug(f' - Writing ProtoModule: {p.get_module_full_name()}')
                 p.write_rendered_file()
             except Exception as ex:
                 log.exception(f'ERROR! Bad stuff happened! %r' % ex)

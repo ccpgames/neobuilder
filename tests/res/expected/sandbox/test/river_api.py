@@ -10,12 +10,15 @@ from typing import *
 from protoplasm import plasm
 
 from sandbox.test import river_dc as dc
+from sandbox.test.river_grpc_receiver import StreamingServiceGrpcServicer
 
 import logging
 log = logging.getLogger(__name__)
 
 
 class StreamingServiceInterface:
+    __servicer_cls__ = StreamingServiceGrpcServicer
+
     def reverse_my_shit(self, shit: str = None) -> str:
         raise plasm.Unimplemented()
 

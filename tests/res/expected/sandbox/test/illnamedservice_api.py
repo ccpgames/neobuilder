@@ -10,12 +10,15 @@ from typing import *
 from protoplasm import plasm
 
 from sandbox.test import illnamedservice_dc as dc
+from sandbox.test.illnamedservice_grpc_receiver import ServiceWithBadRequestNamesGrpcServicer
 
 import logging
 log = logging.getLogger(__name__)
 
 
 class ServiceWithBadRequestNamesInterface:
+    __servicer_cls__ = ServiceWithBadRequestNamesGrpcServicer
+
     def do_something(self, foo: str = None) -> str:
         raise plasm.Unimplemented()
 

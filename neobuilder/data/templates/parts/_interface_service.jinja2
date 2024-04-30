@@ -1,5 +1,9 @@
 {% from 'macros/indentclude.jinja2' import indentclude with context %}
 class {{ service_name }}Interface:
+{% if is_grpc %}
+    __servicer_cls__ = {{ service_name }}GrpcServicer
+
+{% endif %}
 {% for method in method_list %}
     {{ indentclude('parts/_interface_method.jinja2', (indent_spaces + 4), method) }}
 

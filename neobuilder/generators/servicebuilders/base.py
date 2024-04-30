@@ -20,7 +20,7 @@ class AbstractModuleBuilder(object):
         }
 
     def render_top(self) -> str:
-        # TODO(thordurm@ccpgames.com) 2022-06-24: Remove!
+        # TODO(thordurm@ccpgames.com) 2022-06-24: Remove... why?
         return ('# Auto-Generated file - DO NOT EDIT!\n'
                 f'# Source module: {self.module.get_module_full_name()}\n'
                 f'# Generated at: {datetime.datetime.now().isoformat()}\n')
@@ -49,6 +49,7 @@ class AbstractServiceBuilder(object):
 
     def get_template_context(self) -> Dict:
         return {
+            'is_grpc': self.service.module.is_grpc_file(),
             'service': self.service,
             'service_name': self.service.service_descriptor.name,
             '_indent_level': self.indent_level,
