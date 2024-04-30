@@ -11,6 +11,7 @@ from protoplasm import plasm
 {{ imports }}
 if TYPE_CHECKING:
     from grpc import ServicerContext
+    {{ api_import }}
 
 import logging
 log = logging.getLogger(__name__)

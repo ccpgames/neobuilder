@@ -7,19 +7,19 @@ __all__ = [
 ]
 from typing import *
 from protoplasm import plasm
-from sandbox.test import service_with_oneof_api as api
 from sandbox.test import service_with_oneof_dc as dc
 from sandbox.test import service_with_oneof_pb2 as pb2
 from sandbox.test import service_with_oneof_pb2_grpc as pb2_grpc
 if TYPE_CHECKING:
     from grpc import ServicerContext
+    from sandbox.test import service_with_oneof_api as api
 
 import logging
 log = logging.getLogger(__name__)
 
 
 class SimpleOneOfServiceGrpcServicer(plasm.BaseGrpcServicer, pb2_grpc.SimpleOneOfServiceServicer):
-    def __init__(self, implementation: api.SimpleOneOfServiceInterface):
+    def __init__(self, implementation: 'api.SimpleOneOfServiceInterface'):
         super().__init__(implementation)
 
     def add_to_server(self, server):

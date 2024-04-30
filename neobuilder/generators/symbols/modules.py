@@ -163,6 +163,7 @@ class ProtoModule(object):
         })
 
     def write_dataclass_file(self):
+        log.debug(f' - - write_dataclass_file() {self.get_render_file_name()}')
         self.write_file(self.get_render_file_name(), self.render_dataclass_file())
 
     #
@@ -182,6 +183,7 @@ class ProtoModule(object):
 
     def write_api_file(self):
         b = servicebuilders.get_module_builder('interface')(self)
+        log.debug(f' - - write_api_file() {b.get_render_filename()}')
         self.write_file(b.get_render_filename(), b.render())
 
     def render_api_file(self):
@@ -193,6 +195,7 @@ class ProtoModule(object):
 
     def write_grpc_file(self):
         b = servicebuilders.get_module_builder('grpc_receiver')(self)
+        log.debug(f' - - write_grpc_file() {b.get_render_filename()}')
         self.write_file(b.get_render_filename(), b.render())
 
     def render_grpc_file(self):
@@ -204,6 +207,7 @@ class ProtoModule(object):
 
     def write_grpc_impl_file(self):
         b = servicebuilders.get_module_builder('grpc_sender')(self)
+        log.debug(f' - - write_grpc_impl_file() {b.get_render_filename()}')
         self.write_file(b.get_render_filename(), b.render())
 
     def render_grpc_impl_file(self):

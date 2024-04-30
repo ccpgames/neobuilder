@@ -16,6 +16,10 @@ class ModuleBuilder(base.AbstractModuleBuilder):
             f'from {self.module.get_package()} import {self.module.get_module_name()[:-3]}dc as dc'
         }
         for s in self.module.service_map.values():
+
+            if self.module.is_grpc_file():
+                import_set.add(f'from {self.module.get_package()}.{self.module.get_module_name()[:-3]}grpc_receiver import {s.service_descriptor.name}GrpcServicer')
+
             for m in s.method_map.values():
                 # From 3.2
                 if m.input.self_import.get_package() != 'google.protobuf':

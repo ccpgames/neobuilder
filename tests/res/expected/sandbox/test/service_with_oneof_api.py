@@ -10,12 +10,15 @@ from typing import *
 from protoplasm import plasm
 
 from sandbox.test import service_with_oneof_dc as dc
+from sandbox.test.service_with_oneof_grpc_receiver import SimpleOneOfServiceGrpcServicer
 
 import logging
 log = logging.getLogger(__name__)
 
 
 class SimpleOneOfServiceInterface:
+    __servicer_cls__ = SimpleOneOfServiceGrpcServicer
+
     def hello_again(self, greeting: str = None) -> Tuple[str, int]:
         raise plasm.Unimplemented()
 

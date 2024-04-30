@@ -8,19 +8,20 @@ __all__ = [
 ]
 from typing import *
 from protoplasm import plasm
-from sandbox.test import service_api as api
+
 from sandbox.test import service_dc as dc
 from sandbox.test import service_pb2 as pb2
 from sandbox.test import service_pb2_grpc as pb2_grpc
 if TYPE_CHECKING:
     from grpc import ServicerContext
+    from sandbox.test import service_api as api
 
 import logging
 log = logging.getLogger(__name__)
 
 
 class SimpleServiceGrpcServicer(plasm.BaseGrpcServicer, pb2_grpc.SimpleServiceServicer):
-    def __init__(self, implementation: api.SimpleServiceInterface):
+    def __init__(self, implementation: 'api.SimpleServiceInterface'):
         super().__init__(implementation)
 
     def add_to_server(self, server):
@@ -37,7 +38,7 @@ class SimpleServiceGrpcServicer(plasm.BaseGrpcServicer, pb2_grpc.SimpleServiceSe
 
 
 class MathGrpcServicer(plasm.BaseGrpcServicer, pb2_grpc.MathServicer):
-    def __init__(self, implementation: api.MathInterface):
+    def __init__(self, implementation: 'api.MathInterface'):
         super().__init__(implementation)
 
     def add_to_server(self, server):

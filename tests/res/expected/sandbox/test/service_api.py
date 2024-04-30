@@ -11,12 +11,16 @@ from typing import *
 from protoplasm import plasm
 
 from sandbox.test import service_dc as dc
+from sandbox.test.service_grpc_receiver import MathGrpcServicer
+from sandbox.test.service_grpc_receiver import SimpleServiceGrpcServicer
 
 import logging
 log = logging.getLogger(__name__)
 
 
 class SimpleServiceInterface:
+    __servicer_cls__ = SimpleServiceGrpcServicer
+
     def hello(self, greeting: str = None) -> str:
         raise plasm.Unimplemented()
 
@@ -28,6 +32,8 @@ class SimpleServiceInterface:
 
 
 class MathInterface:
+    __servicer_cls__ = MathGrpcServicer
+
     def add(self, x: int = None, y: int = None) -> int:
         raise plasm.Unimplemented()
 
