@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 HERE = os.path.dirname(__file__)
 
 PROTO_ROOT = os.path.join(HERE, 'res', 'proto')
-BUILD_ROOT = os.path.join(HERE, 'res', 'build')
+BUILD_ROOT = os.path.join(HERE, 'res', 'build/')
 
 
 class ServiceTest(unittest.TestCase):

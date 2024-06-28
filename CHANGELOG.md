@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [5.1.1] - 2024-06-28
+
+### Fixed
+
+- An issue where the `__everything__.py` file was missing the first character of
+  the package name if the build root ended with a slash (or backslash)
+
+
 ## [5.1.0] - 2024-04-30
 
 ### Added
