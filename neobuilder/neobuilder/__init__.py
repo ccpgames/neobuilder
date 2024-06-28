@@ -12,6 +12,7 @@ import semver
 
 from grpc_tools import protoc
 from . import render
+import pathlib
 
 from ccptools.tpu import strimp
 
@@ -387,11 +388,14 @@ class NeoBuilder(object):
 
             line_buffer = []
 
+            broot = pathlib.Path(self.build_root).absolute()
+
             for (dirpath, dirnames, filenames) in os.walk(self.build_path):
                 for f in filenames:
                     if f.endswith('.py') and not f.endswith('__.py'):
-                        fpath = os.path.join(dirpath, f).replace('\\', '/')
-                        package_name = fpath[len(self.build_root)+1:-3].replace('/', '.')
+                        fpath = pathlib.Path(dirpath) / f
+                        rel_path = fpath.relative_to(broot)
+                        package_name = str(rel_path)[:-3].replace('\\', '/').replace('/', '.')
                         line_buffer.append(f'import {package_name}')
                         counter += 1
             line_buffer.sort()
