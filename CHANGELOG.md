@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.2] - 2024-07-02
+
+### Fixed
+
+- An issue with the last fix where, if the build root is a relative path, we'll 
+  end up getting an exception because we can't find how one path is relative to 7
+  another if one of them is absolute and the other is relative.
+
 
 ## [5.1.1] - 2024-06-28
 
