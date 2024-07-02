@@ -389,8 +389,9 @@ class NeoBuilder(object):
             line_buffer = []
 
             broot = pathlib.Path(self.build_root).absolute()
+            bpath = pathlib.Path(self.build_path).absolute()
 
-            for (dirpath, dirnames, filenames) in os.walk(self.build_path):
+            for (dirpath, dirnames, filenames) in os.walk(bpath):
                 for f in filenames:
                     if f.endswith('.py') and not f.endswith('__.py'):
                         fpath = pathlib.Path(dirpath) / f
