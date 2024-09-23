@@ -27,6 +27,7 @@ class FieldKind(enum.IntFlag):
     SPECIAL_DURATION = 0x0800
     SPECIAL_ANY = 0x1000
     SPECIAL_EMPTY = 0x2000
+    SPECIAL_STRUCT = 0x4000
 
     SPECIAL_KEYWORD = 0x10000000
 
@@ -124,6 +125,8 @@ class FieldDescriptorWrapper:
                 self.kind |= FieldKind.SPECIAL_ANY
             elif self.value_msg.full_name == 'google.protobuf.Empty':
                 self.kind |= FieldKind.SPECIAL_EMPTY
+            elif self.value_msg.full_name == 'google.protobuf.Struct':
+                self.kind |= FieldKind.SPECIAL_STRUCT
             else:
                 self.kind |= FieldKind.DATA_MESSAGE
         elif self.value_field.type == ProtoType.ENUM:  # Enum

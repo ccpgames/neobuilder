@@ -14,6 +14,8 @@ import sandbox.test.delta_dc
 import sandbox.test.delta_pb2
 import sandbox.test.enums_dc
 import sandbox.test.enums_pb2
+import sandbox.test.googlestruct_dc
+import sandbox.test.googlestruct_pb2
 import sandbox.test.illnamedfields_dc
 import sandbox.test.illnamedfields_pb2
 import sandbox.test.illnamedservice_api

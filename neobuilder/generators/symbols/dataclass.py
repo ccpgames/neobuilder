@@ -226,7 +226,9 @@ class ProtoField(object):
         return f'{self.py_name()}: {self.get_type_hint(used_in_file)} = None'
 
     def get_field_options(self):
-        if self.is_map():
+        if self.is_struct():
+            return f"default_factory=dict, metadata={{{self.get_metadata()}}}"
+        elif self.is_map():
             return f"default_factory=dict, metadata={{{self.get_metadata()}}}"
         elif self.is_list():
             return f"default_factory=list, metadata={{{self.get_metadata()}}}"
@@ -277,7 +279,9 @@ class ProtoField(object):
             return self.field_descriptor.py_type.name
 
     def get_type_hint(self, used_in_file: json_format.descriptor.FileDescriptor = None) -> str:
-        if self.is_map():
+        if self.is_struct():
+            return f'Dict[str, Any]'
+        elif self.is_map():
             return f'Dict[{self.field_descriptor.key_py_type.name}, {self.get_py_type_name(used_in_file)}]'
         elif self.is_list():
             return f'List[{self.get_py_type_name(used_in_file)}]'
@@ -300,7 +304,9 @@ class ProtoField(object):
         elif self.is_list():
             buf.append("'is_list': True")
 
-        if self.is_message():
+        if self.is_struct():
+            buf.append("'is_struct': True")
+        elif self.is_message():
             buf.append("'is_obj': True")
         elif self.is_enum():
             buf.append("'is_enum': True")
@@ -325,6 +331,8 @@ class ProtoField(object):
             return 'EnumDictator'
         if self.is_long():
             return 'LongDictator'
+        if self.is_struct():
+            return 'StructDictator'
         return 'BaseDictator'
 
     def is_long(self):
@@ -332,6 +340,9 @@ class ProtoField(object):
 
     def is_timestamp(self):
         return bool(self.field_descriptor.kind & FieldKind.SPECIAL_TIMESTAMP)
+
+    def is_struct(self):
+        return bool(self.field_descriptor.kind & FieldKind.SPECIAL_STRUCT)
 
     def is_duration(self):
         return bool(self.field_descriptor.kind & FieldKind.SPECIAL_DURATION)
