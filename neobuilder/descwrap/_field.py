@@ -53,7 +53,7 @@ class FieldKind(enum.IntFlag):
     FIELD_ENUM_MAP = DATA_ENUM | KIND_MAP
 
     def __repr__(self) -> str:
-        return self.name
+        return self.name or str(self.value)
 
 
 @dataclasses.dataclass

@@ -16,7 +16,7 @@ __all__ = [
 import dataclasses
 import datetime
 import enum
-from typing import *
+import typing
 from protoplasm.casting import dictators
 from protoplasm import plasm
 
@@ -38,26 +38,26 @@ class RainbowMessage(plasm.DataclassBase):
     __proto_cls__ = pb2.RainbowMessage
     simple_field: str = dataclasses.field(default='', metadata={'dictator': dictators.BaseDictator})
     message_field: SubMessage = dataclasses.field(default=None, metadata={'dictator': dictators.BaseDictator, 'is_obj': True})
-    simple_list: List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    message_list: List[SubMessage] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True, 'is_obj': True})
-    simple_map: Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    message_map: Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    simple_list: typing.List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    message_list: typing.List[SubMessage] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True, 'is_obj': True})
+    simple_map: typing.Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    message_map: typing.Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
 
 
 @dataclasses.dataclass
 class TimestampMessage(plasm.DataclassBase):
     __proto_cls__ = pb2.TimestampMessage
     my_timestamp: datetime.datetime = dataclasses.field(default=None, metadata={'dictator': dictators.TimestampDictator})
-    my_timestamp_list: List[datetime.datetime] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.TimestampDictator, 'is_list': True})
-    my_timestamp_map: Dict[str, datetime.datetime] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.TimestampDictator, 'is_map': True})
+    my_timestamp_list: typing.List[datetime.datetime] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.TimestampDictator, 'is_list': True})
+    my_timestamp_map: typing.Dict[str, datetime.datetime] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.TimestampDictator, 'is_map': True})
 
 
 @dataclasses.dataclass
 class BytesMessage(plasm.DataclassBase):
     __proto_cls__ = pb2.BytesMessage
     my_bytes: bytes = dataclasses.field(default=b'', metadata={'dictator': dictators.ByteDictator})
-    my_bytes_list: List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})
-    my_bytes_map: Dict[str, bytes] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.ByteDictator, 'is_map': True})
+    my_bytes_list: typing.List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})
+    my_bytes_map: typing.Dict[str, bytes] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.ByteDictator, 'is_map': True})
 
 
 @dataclasses.dataclass
@@ -83,54 +83,54 @@ class AllTypes(plasm.DataclassBase):
 @dataclasses.dataclass
 class AllTypesList(plasm.DataclassBase):
     __proto_cls__ = pb2.AllTypesList
-    my_string_list: List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_float_list: List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_double_list: List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_int32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_int64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_uint32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_uint64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_sint32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_sint64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_fixed32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_fixed64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_sfixed32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_sfixed64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_bool_list: List[bool] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_bytes_list: List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})
+    my_string_list: typing.List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_float_list: typing.List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_double_list: typing.List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_int32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_int64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_uint32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_uint64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_sint32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_sint64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_fixed32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_fixed64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_sfixed32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_sfixed64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_bool_list: typing.List[bool] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_bytes_list: typing.List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})
 
 
 @dataclasses.dataclass
 class AllTypesMap(plasm.DataclassBase):
     __proto_cls__ = pb2.AllTypesMap
-    my_string_map: Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_int32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_int64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_uint32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_uint64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_sint32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_sint64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_fixed32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_fixed64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_sfixed32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_sfixed64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_bool_map: Dict[bool, bool] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_string_map: typing.Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_int32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_int64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_uint32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_uint64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_sint32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_sint64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_fixed32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_fixed64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_sfixed32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_sfixed64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_bool_map: typing.Dict[bool, bool] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
 
 
 @dataclasses.dataclass
 class AllTypesNestedMap(plasm.DataclassBase):
     __proto_cls__ = pb2.AllTypesNestedMap
-    my_string_map: Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_int32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_int64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_uint32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_uint64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sint32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sint64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_fixed32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_fixed64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sfixed32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sfixed64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_bool_map: Dict[bool, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_string_map: typing.Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_int32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_int64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_uint32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_uint64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sint32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sint64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_fixed32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_fixed64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sfixed32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sfixed64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_bool_map: typing.Dict[bool, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
 
 

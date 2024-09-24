@@ -6,7 +6,7 @@ __all__ = [
     'ServiceWithBadRequestNamesInterface',
 ]
 import datetime
-from typing import *
+import typing
 from protoplasm import plasm
 
 from sandbox.test import illnamedservice_dc as dc

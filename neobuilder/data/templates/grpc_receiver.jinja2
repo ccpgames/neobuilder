@@ -6,10 +6,11 @@ __all__ = [
     '{{ a }}',
 {% endfor %}
 ]
-from typing import *
+import datetime
+import typing
 from protoplasm import plasm
 {{ imports }}
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from grpc import ServicerContext
     {{ api_import }}
 

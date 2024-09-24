@@ -5,7 +5,8 @@
 __all__ = [
     'ServiceWithImportedInputAndOutputGrpcServicer',
 ]
-from typing import *
+import datetime
+import typing
 from protoplasm import plasm
 from google.protobuf import any_pb2
 from google.protobuf import timestamp_pb2
@@ -17,7 +18,7 @@ from sandbox.test import rainbow_dc as sandbox__test__rainbow_dc
 from sandbox.test import service_with_imported_io_dc as dc
 from sandbox.test import service_with_imported_io_pb2 as pb2
 from sandbox.test import service_with_imported_io_pb2_grpc as pb2_grpc
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from grpc import ServicerContext
     from sandbox.test import service_with_imported_io_api as api
 

@@ -114,7 +114,7 @@ class ProtoMethod(object):
     def get_request_type_hint(self) -> str:
         unary = f'{self.input.render_pb2_type_hint(self.service.module)}'
         if self.io_type.is_input_stream():
-            return f'Iterable[{unary}]'
+            return f'typing.Iterable[{unary}]'
         return unary
 
     def get_request_dc_type_hint(self) -> str:
@@ -125,7 +125,7 @@ class ProtoMethod(object):
 
     def get_response_dc_type(self) -> str:
         if self.io_type.is_output_stream():
-            return f'Iterable[{self.get_response_dc_class_type()}]'
+            return f'typing.Iterable[{self.get_response_dc_class_type()}]'
         return self.get_response_dc_class_type()
 
     def get_response_dc_class_type(self) -> str:
