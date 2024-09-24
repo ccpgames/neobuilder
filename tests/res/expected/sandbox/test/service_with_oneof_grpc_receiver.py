@@ -5,12 +5,13 @@
 __all__ = [
     'SimpleOneOfServiceGrpcServicer',
 ]
-from typing import *
+import datetime
+import typing
 from protoplasm import plasm
 from sandbox.test import service_with_oneof_dc as dc
 from sandbox.test import service_with_oneof_pb2 as pb2
 from sandbox.test import service_with_oneof_pb2_grpc as pb2_grpc
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from grpc import ServicerContext
     from sandbox.test import service_with_oneof_api as api
 

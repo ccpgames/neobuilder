@@ -9,7 +9,7 @@ __all__ = [
 import dataclasses
 import datetime
 import enum
-from typing import *
+import typing
 from protoplasm.casting import dictators
 from protoplasm import plasm
 
@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 class DurationMessage(plasm.DataclassBase):
     __proto_cls__ = pb2.DurationMessage
     my_duration: datetime.timedelta = dataclasses.field(default=None, metadata={'dictator': dictators.DurationDictator})
-    my_duration_list: List[datetime.timedelta] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.DurationDictator, 'is_list': True})
-    my_duration_map: Dict[str, datetime.timedelta] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.DurationDictator, 'is_map': True})
+    my_duration_list: typing.List[datetime.timedelta] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.DurationDictator, 'is_list': True})
+    my_duration_map: typing.Dict[str, datetime.timedelta] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.DurationDictator, 'is_map': True})
 
 

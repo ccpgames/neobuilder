@@ -9,7 +9,7 @@ __all__ = [
 import dataclasses
 import datetime
 import enum
-from typing import *
+import typing
 from protoplasm.casting import dictators
 from protoplasm import plasm
 
@@ -22,5 +22,5 @@ log = logging.getLogger(__name__)
 @dataclasses.dataclass
 class StructMessage(plasm.DataclassBase):
     __proto_cls__ = pb2.StructMessage
-    my_struct: Dict[str, Any] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.StructDictator, 'is_struct': True})
+    my_struct: typing.Dict[str, typing.Any] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.StructDictator, 'is_struct': True})
 

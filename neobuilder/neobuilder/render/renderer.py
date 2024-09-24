@@ -43,14 +43,3 @@ class TemplateRenderer(metaclass=Singleton):
         except Exception as ex:
             log.exception(f'Error in template: {template_name}: {ex!r}')
             raise ex
-
-
-def main():
-    t = TemplateRenderer()
-    print(t.render_file('root_init',
-                        version='(3, 1, 0, 0)',
-                        protoplasm_version='(4, 0, 0, 0)'))
-
-
-if __name__ == '__main__':
-    main()

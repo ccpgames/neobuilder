@@ -6,7 +6,7 @@ __all__ = [
     'StreamingServiceInterface',
 ]
 import datetime
-from typing import *
+import typing
 from protoplasm import plasm
 
 from sandbox.test import river_dc as dc
@@ -22,12 +22,12 @@ class StreamingServiceInterface:
     def reverse_my_shit(self, shit: str = None) -> str:
         raise plasm.Unimplemented()
 
-    def marco_polo(self, request_iterator: Iterable[dc.MarcoPoloRequest]) -> plasm.ResponseIterator[dc.MarcoPoloResponse]:
+    def marco_polo(self, request_iterator: typing.Iterable[dc.MarcoPoloRequest]) -> plasm.ResponseIterator[dc.MarcoPoloResponse]:
         raise plasm.Unimplemented()
 
     def tell_me_a_story(self, story: str = None) -> plasm.ResponseIterator[dc.TellMeAStoryResponse]:
         raise plasm.Unimplemented()
 
-    def guess_the_number(self, request_iterator: Iterable[dc.GuessTheNumberRequest]) -> str:
+    def guess_the_number(self, request_iterator: typing.Iterable[dc.GuessTheNumberRequest]) -> str:
         raise plasm.Unimplemented()
 

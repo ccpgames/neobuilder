@@ -9,7 +9,7 @@ __all__ = [
 import dataclasses
 import datetime
 import enum
-from typing import *
+import typing
 from protoplasm.casting import dictators
 from protoplasm import plasm
 
@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 class AnyMessage(plasm.DataclassBase):
     __proto_cls__ = pb2.AnyMessage
     my_any: plasm.DataclassBase = dataclasses.field(default=None, metadata={'dictator': dictators.AnyDictator})
-    my_any_list: List[plasm.DataclassBase] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.AnyDictator, 'is_list': True})
-    my_any_map: Dict[str, plasm.DataclassBase] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.AnyDictator, 'is_map': True})
+    my_any_list: typing.List[plasm.DataclassBase] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.AnyDictator, 'is_list': True})
+    my_any_map: typing.Dict[str, plasm.DataclassBase] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.AnyDictator, 'is_map': True})
 
 

@@ -6,7 +6,7 @@ __all__ = [
     'InterfaceOnlyServiceInterface',
 ]
 import datetime
-from typing import *
+import typing
 from protoplasm import plasm
 
 from sandbox.test import interfaceonly_dc as dc

@@ -8,7 +8,7 @@ __all__ = [
 import dataclasses
 import datetime
 import enum
-from typing import *
+import typing
 from protoplasm.casting import dictators
 from protoplasm import plasm
 

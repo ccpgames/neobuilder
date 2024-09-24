@@ -101,10 +101,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('simple_list', proto_field.py_name())
-        self.assertEqual('List[str]', proto_field.get_type_hint())
+        self.assertEqual('typing.List[str]', proto_field.get_type_hint())
         self.assertEqual('BaseDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.BaseDictator, 'is_list': True", proto_field.get_metadata())
-        self.assertEqual("simple_list: List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})", proto_field.render_py())
+        self.assertEqual("simple_list: typing.List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})", proto_field.render_py())
 
     def test_rainbow_message_list(self):
         from sandbox.test import rainbow_pb2
@@ -125,10 +125,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('message_list', proto_field.py_name())
-        self.assertEqual('List[SubMessage]', proto_field.get_type_hint())
+        self.assertEqual('typing.List[SubMessage]', proto_field.get_type_hint())
         self.assertEqual('BaseDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.BaseDictator, 'is_list': True, 'is_obj': True", proto_field.get_metadata())
-        self.assertEqual("message_list: List[SubMessage] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True, 'is_obj': True})", proto_field.render_py())
+        self.assertEqual("message_list: typing.List[SubMessage] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True, 'is_obj': True})", proto_field.render_py())
 
     def test_rainbow_simple_map(self):
         from sandbox.test import rainbow_pb2
@@ -149,10 +149,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('simple_map', proto_field.py_name())
-        self.assertEqual('Dict[str, str]', proto_field.get_type_hint())
+        self.assertEqual('typing.Dict[str, str]', proto_field.get_type_hint())
         self.assertEqual('BaseDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.BaseDictator, 'is_map': True", proto_field.get_metadata())
-        self.assertEqual("simple_map: Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})", proto_field.render_py())
+        self.assertEqual("simple_map: typing.Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})", proto_field.render_py())
 
     def test_rainbow_message_map(self):
         from sandbox.test import rainbow_pb2
@@ -173,10 +173,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('message_map', proto_field.py_name())
-        self.assertEqual('Dict[str, SubMessage]', proto_field.get_type_hint())
+        self.assertEqual('typing.Dict[str, SubMessage]', proto_field.get_type_hint())
         self.assertEqual('BaseDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True", proto_field.get_metadata())
-        self.assertEqual("message_map: Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})", proto_field.render_py())
+        self.assertEqual("message_map: typing.Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})", proto_field.render_py())
 
     def test_timestamp(self):
         from sandbox.test import rainbow_pb2
@@ -221,10 +221,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('my_timestamp_list', proto_field.py_name())
-        self.assertEqual('List[datetime.datetime]', proto_field.get_type_hint())
+        self.assertEqual('typing.List[datetime.datetime]', proto_field.get_type_hint())
         self.assertEqual('TimestampDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.TimestampDictator, 'is_list': True", proto_field.get_metadata())
-        self.assertEqual("my_timestamp_list: List[datetime.datetime] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.TimestampDictator, 'is_list': True})", proto_field.render_py())
+        self.assertEqual("my_timestamp_list: typing.List[datetime.datetime] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.TimestampDictator, 'is_list': True})", proto_field.render_py())
 
     def test_timestamp_map(self):
         from sandbox.test import rainbow_pb2
@@ -245,10 +245,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('my_timestamp_map', proto_field.py_name())
-        self.assertEqual('Dict[str, datetime.datetime]', proto_field.get_type_hint())
+        self.assertEqual('typing.Dict[str, datetime.datetime]', proto_field.get_type_hint())
         self.assertEqual('TimestampDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.TimestampDictator, 'is_map': True", proto_field.get_metadata())
-        self.assertEqual("my_timestamp_map: Dict[str, datetime.datetime] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.TimestampDictator, 'is_map': True})", proto_field.render_py())
+        self.assertEqual("my_timestamp_map: typing.Dict[str, datetime.datetime] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.TimestampDictator, 'is_map': True})", proto_field.render_py())
 
     def test_bytes(self):
         from sandbox.test import rainbow_pb2
@@ -292,10 +292,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('my_bytes_list', proto_field.py_name())
-        self.assertEqual('List[bytes]', proto_field.get_type_hint())
+        self.assertEqual('typing.List[bytes]', proto_field.get_type_hint())
         self.assertEqual('ByteDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.ByteDictator, 'is_list': True", proto_field.get_metadata())
-        self.assertEqual("my_bytes_list: List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})", proto_field.render_py())
+        self.assertEqual("my_bytes_list: typing.List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})", proto_field.render_py())
 
     def test_bytes_map(self):
         from sandbox.test import rainbow_pb2
@@ -316,10 +316,10 @@ class ProtoFieldTest(unittest.TestCase):
         self.assertFalse(proto_field.is_enum())
 
         self.assertEqual('my_bytes_map', proto_field.py_name())
-        self.assertEqual('Dict[str, bytes]', proto_field.get_type_hint())
+        self.assertEqual('typing.Dict[str, bytes]', proto_field.get_type_hint())
         self.assertEqual('ByteDictator', proto_field.get_dictator_name())
         self.assertEqual("'dictator': dictators.ByteDictator, 'is_map': True", proto_field.get_metadata())
-        self.assertEqual("my_bytes_map: Dict[str, bytes] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.ByteDictator, 'is_map': True})", proto_field.render_py())
+        self.assertEqual("my_bytes_map: typing.Dict[str, bytes] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.ByteDictator, 'is_map': True})", proto_field.render_py())
 
     def test_all_types(self):
         from sandbox.test import rainbow_pb2
@@ -352,21 +352,21 @@ class AllTypes(plasm.DataclassBase):
         expected = """@dataclasses.dataclass
 class AllTypesList(plasm.DataclassBase):
     __proto_cls__ = pb2.AllTypesList
-    my_string_list: List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_float_list: List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_double_list: List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_int32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_int64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_uint32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_uint64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_sint32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_sint64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_fixed32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_fixed64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_sfixed32_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_sfixed64_list: List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
-    my_bool_list: List[bool] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
-    my_bytes_list: List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})"""
+    my_string_list: typing.List[str] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_float_list: typing.List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_double_list: typing.List[float] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_int32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_int64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_uint32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_uint64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_sint32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_sint64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_fixed32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_fixed64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_sfixed32_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_sfixed64_list: typing.List[int] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.LongDictator, 'is_list': True})
+    my_bool_list: typing.List[bool] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.BaseDictator, 'is_list': True})
+    my_bytes_list: typing.List[bytes] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.ByteDictator, 'is_list': True})"""
         self.assertEqual(expected, class_string)
 
     def test_all_types_map(self):
@@ -376,18 +376,18 @@ class AllTypesList(plasm.DataclassBase):
         expected = """@dataclasses.dataclass
 class AllTypesMap(plasm.DataclassBase):
     __proto_cls__ = pb2.AllTypesMap
-    my_string_map: Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_int32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_int64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_uint32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_uint64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_sint32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_sint64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_fixed32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_fixed64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_sfixed32_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
-    my_sfixed64_map: Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
-    my_bool_map: Dict[bool, bool] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})"""
+    my_string_map: typing.Dict[str, str] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_int32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_int64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_uint32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_uint64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_sint32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_sint64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_fixed32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_fixed64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_sfixed32_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})
+    my_sfixed64_map: typing.Dict[int, int] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.LongDictator, 'is_map': True})
+    my_bool_map: typing.Dict[bool, bool] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True})"""
         self.assertEqual(expected, class_string)
 
     def test_all_types_nested_map(self):
@@ -397,18 +397,18 @@ class AllTypesMap(plasm.DataclassBase):
         expected = """@dataclasses.dataclass
 class AllTypesNestedMap(plasm.DataclassBase):
     __proto_cls__ = pb2.AllTypesNestedMap
-    my_string_map: Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_int32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_int64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_uint32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_uint64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sint32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sint64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_fixed32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_fixed64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sfixed32_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_sfixed64_map: Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
-    my_bool_map: Dict[bool, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})"""
+    my_string_map: typing.Dict[str, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_int32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_int64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_uint32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_uint64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sint32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sint64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_fixed32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_fixed64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sfixed32_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_sfixed64_map: typing.Dict[int, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})
+    my_bool_map: typing.Dict[bool, SubMessage] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.BaseDictator, 'is_map': True, 'is_obj': True})"""
         self.assertEqual(expected, class_string)
 
     def test_duration(self):
@@ -448,7 +448,7 @@ class AllTypesNestedMap(plasm.DataclassBase):
         proto_class = neobuilder.generators.symbols.dataclass.ProtoClass(timeduration_pb2.DurationMessage.DESCRIPTOR,
                                                                          neobuilder.generators.symbols.modules.ProtoModule(timeduration_pb2))
         exp_field = 'my_duration_list'
-        exp_type_hint = 'List[datetime.timedelta]'
+        exp_type_hint = 'typing.List[datetime.timedelta]'
         exp_dictator = 'DurationDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_list': True"
         exp_default = 'default_factory=list'
@@ -481,7 +481,7 @@ class AllTypesNestedMap(plasm.DataclassBase):
         proto_class = neobuilder.generators.symbols.dataclass.ProtoClass(timeduration_pb2.DurationMessage.DESCRIPTOR,
                                                                          neobuilder.generators.symbols.modules.ProtoModule(timeduration_pb2))
         exp_field = 'my_duration_map'
-        exp_type_hint = 'Dict[str, datetime.timedelta]'
+        exp_type_hint = 'typing.Dict[str, datetime.timedelta]'
         exp_dictator = 'DurationDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_map': True"
         exp_default = 'default_factory=dict'
@@ -565,7 +565,7 @@ class ProtoAnyFieldTest(unittest.TestCase):
         proto_class = neobuilder.generators.symbols.dataclass.ProtoClass(anytest_pb2.AnyMessage.DESCRIPTOR,
                                                                          neobuilder.generators.symbols.modules.ProtoModule(anytest_pb2))
         exp_field = 'my_any_list'
-        exp_type_hint = 'List[plasm.DataclassBase]'
+        exp_type_hint = 'typing.List[plasm.DataclassBase]'
         exp_dictator = 'AnyDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_list': True"
         exp_default = 'default_factory=list'
@@ -599,7 +599,7 @@ class ProtoAnyFieldTest(unittest.TestCase):
         proto_class = neobuilder.generators.symbols.dataclass.ProtoClass(anytest_pb2.AnyMessage.DESCRIPTOR,
                                                                          neobuilder.generators.symbols.modules.ProtoModule(anytest_pb2))
         exp_field = 'my_any_map'
-        exp_type_hint = 'Dict[str, plasm.DataclassBase]'
+        exp_type_hint = 'typing.Dict[str, plasm.DataclassBase]'
         exp_dictator = 'AnyDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_map': True"
         exp_default = 'default_factory=dict'
@@ -744,7 +744,7 @@ DEFAULT = ExternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithExternalEnum']
         exp_field = 'my_enum_list'
         exp_dictator = 'EnumDictator'
-        exp_type_hint = 'List[ExternalEnum]'
+        exp_type_hint = 'typing.List[ExternalEnum]'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_list': True, 'is_enum': True"
         exp_default = 'default_factory=list'
 
@@ -775,7 +775,7 @@ DEFAULT = ExternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithExternalEnum']
         exp_field = 'my_alias_enum_list'
         exp_dictator = 'EnumDictator'
-        exp_type_hint = 'List[ExternalAliasEnum]'
+        exp_type_hint = 'typing.List[ExternalAliasEnum]'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_list': True, 'is_enum': True"
         exp_default = 'default_factory=list'
 
@@ -806,7 +806,7 @@ DEFAULT = ExternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithExternalEnum']
         exp_field = 'my_enum_map'
         exp_dictator = 'EnumDictator'
-        exp_type_hint = 'Dict[str, ExternalEnum]'
+        exp_type_hint = 'typing.Dict[str, ExternalEnum]'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_map': True, 'is_enum': True"
         exp_default = 'default_factory=dict'
 
@@ -837,7 +837,7 @@ DEFAULT = ExternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithExternalEnum']
         exp_field = 'my_alias_enum_map'
         exp_dictator = 'EnumDictator'
-        exp_type_hint = 'Dict[str, ExternalAliasEnum]'
+        exp_type_hint = 'typing.Dict[str, ExternalAliasEnum]'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_map': True, 'is_enum': True"
         exp_default = 'default_factory=dict'
 
@@ -1006,7 +1006,7 @@ DEFAULT = InternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithInternalEnum']
 
         exp_field = 'my_internal_enum_list'
-        exp_type_hint = 'List[WithInternalEnum.InternalEnum]'
+        exp_type_hint = 'typing.List[WithInternalEnum.InternalEnum]'
         exp_dictator = 'EnumDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_list': True, 'is_enum': True"
         exp_default = 'default_factory=list'
@@ -1038,7 +1038,7 @@ DEFAULT = InternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithInternalEnum']
 
         exp_field = 'my_internal_alias_enum_list'
-        exp_type_hint = 'List[WithInternalEnum.InternalAliasEnum]'
+        exp_type_hint = 'typing.List[WithInternalEnum.InternalAliasEnum]'
         exp_dictator = 'EnumDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_list': True, 'is_enum': True"
         exp_default = 'default_factory=list'
@@ -1070,7 +1070,7 @@ DEFAULT = InternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithInternalEnum']
 
         exp_field = 'my_internal_enum_map'
-        exp_type_hint = 'Dict[str, WithInternalEnum.InternalEnum]'
+        exp_type_hint = 'typing.Dict[str, WithInternalEnum.InternalEnum]'
         exp_dictator = 'EnumDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_map': True, 'is_enum': True"
         exp_default = 'default_factory=dict'
@@ -1102,7 +1102,7 @@ DEFAULT = InternalAliasEnum(0)""", proto_enum.render_py_consts().strip())
         proto_class = proto_module.message_map['WithInternalEnum']
 
         exp_field = 'my_internal_alias_enum_map'
-        exp_type_hint = 'Dict[str, WithInternalEnum.InternalAliasEnum]'
+        exp_type_hint = 'typing.Dict[str, WithInternalEnum.InternalAliasEnum]'
         exp_dictator = 'EnumDictator'
         exp_meta = f"'dictator': dictators.{exp_dictator}, 'is_map': True, 'is_enum': True"
         exp_default = 'default_factory=dict'

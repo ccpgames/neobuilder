@@ -6,7 +6,7 @@ __all__ = [
     'SimpleOneOfServiceInterface',
 ]
 import datetime
-from typing import *
+import typing
 from protoplasm import plasm
 
 from sandbox.test import service_with_oneof_dc as dc
@@ -19,6 +19,6 @@ log = logging.getLogger(__name__)
 class SimpleOneOfServiceInterface:
     __servicer_cls__ = SimpleOneOfServiceGrpcServicer
 
-    def hello_again(self, greeting: str = None) -> Tuple[str, int]:
+    def hello_again(self, greeting: str = None) -> typing.Tuple[str, int]:
         raise plasm.Unimplemented()
 

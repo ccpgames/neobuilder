@@ -94,7 +94,7 @@ class ProtoClass(object):
 
     def output_google_type_proxy(self):
         return {
-            'Empty': 'NoReturn'
+            'Empty': 'typing.NoReturn'
         }.get(
             self.get_class_name()
         )
@@ -162,7 +162,7 @@ class ProtoClass(object):
             type_hint = f'{self.self_import.get_import_name(method_desc.file_descriptor)}.{self.descriptor.name}'
 
         if method_desc.io_type.is_input_stream():
-            return f', request_iterator: Iterable[{type_hint}]'
+            return f', request_iterator: typing.Iterable[{type_hint}]'
         return f', {self.get_under_name()}: {type_hint}'
 
     def render_forwarded_args(self):
@@ -179,8 +179,8 @@ class ProtoClass(object):
             if len(type_hint_list) == 1:
                 return type_hint_list[0]
             else:
-                return f"Tuple[{', '.join(type_hint_list)}]"
-        return 'NoReturn'
+                return f"typing.Tuple[{', '.join(type_hint_list)}]"
+        return 'typing.NoReturn'
 
     def render_api_return_dataclass(self, api_file: typing.Optional[pro_desc.FileDescriptor] = None):
         if self.descriptor.file.package == 'google.protobuf':
@@ -280,11 +280,11 @@ class ProtoField(object):
 
     def get_type_hint(self, used_in_file: json_format.descriptor.FileDescriptor = None) -> str:
         if self.is_struct():
-            return f'Dict[str, Any]'
+            return f'typing.Dict[str, typing.Any]'
         elif self.is_map():
-            return f'Dict[{self.field_descriptor.key_py_type.name}, {self.get_py_type_name(used_in_file)}]'
+            return f'typing.Dict[{self.field_descriptor.key_py_type.name}, {self.get_py_type_name(used_in_file)}]'
         elif self.is_list():
-            return f'List[{self.get_py_type_name(used_in_file)}]'
+            return f'typing.List[{self.get_py_type_name(used_in_file)}]'
         elif self.is_empty():
             return f'None'
         return self.get_py_type_name(used_in_file)

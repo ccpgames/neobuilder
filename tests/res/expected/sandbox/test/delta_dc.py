@@ -9,7 +9,7 @@ __all__ = [
 import dataclasses
 import datetime
 import enum
-from typing import *
+import typing
 from protoplasm.casting import dictators
 from protoplasm import plasm
 from sandbox.test import beta_dc as sandbox__test__beta_dc

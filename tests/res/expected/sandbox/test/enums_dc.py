@@ -13,7 +13,7 @@ __all__ = [
 import dataclasses
 import datetime
 import enum
-from typing import *
+import typing
 from protoplasm.casting import dictators
 from protoplasm import plasm
 
@@ -64,10 +64,10 @@ class WithExternalEnum(plasm.DataclassBase):
     __proto_cls__ = pb2.WithExternalEnum
     my_enum: ExternalEnum = dataclasses.field(default=0, metadata={'dictator': dictators.EnumDictator, 'is_enum': True})
     my_alias_enum: ExternalAliasEnum = dataclasses.field(default=0, metadata={'dictator': dictators.EnumDictator, 'is_enum': True})
-    my_enum_list: List[ExternalEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
-    my_alias_enum_list: List[ExternalAliasEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
-    my_enum_map: Dict[str, ExternalEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
-    my_alias_enum_map: Dict[str, ExternalAliasEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
+    my_enum_list: typing.List[ExternalEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
+    my_alias_enum_list: typing.List[ExternalAliasEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
+    my_enum_map: typing.Dict[str, ExternalEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
+    my_alias_enum_map: typing.Dict[str, ExternalAliasEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
 
 
 @dataclasses.dataclass
@@ -108,10 +108,10 @@ class WithInternalEnum(plasm.DataclassBase):
 
     my_internal_enum: WithInternalEnum.InternalEnum = dataclasses.field(default=0, metadata={'dictator': dictators.EnumDictator, 'is_enum': True})
     my_internal_alias_enum: WithInternalEnum.InternalAliasEnum = dataclasses.field(default=0, metadata={'dictator': dictators.EnumDictator, 'is_enum': True})
-    my_internal_enum_list: List[WithInternalEnum.InternalEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
-    my_internal_alias_enum_list: List[WithInternalEnum.InternalAliasEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
-    my_internal_enum_map: Dict[str, WithInternalEnum.InternalEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
-    my_internal_alias_enum_map: Dict[str, WithInternalEnum.InternalAliasEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
+    my_internal_enum_list: typing.List[WithInternalEnum.InternalEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
+    my_internal_alias_enum_list: typing.List[WithInternalEnum.InternalAliasEnum] = dataclasses.field(default_factory=list, metadata={'dictator': dictators.EnumDictator, 'is_list': True, 'is_enum': True})
+    my_internal_enum_map: typing.Dict[str, WithInternalEnum.InternalEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
+    my_internal_alias_enum_map: typing.Dict[str, WithInternalEnum.InternalAliasEnum] = dataclasses.field(default_factory=dict, metadata={'dictator': dictators.EnumDictator, 'is_map': True, 'is_enum': True})
 
 
 @dataclasses.dataclass

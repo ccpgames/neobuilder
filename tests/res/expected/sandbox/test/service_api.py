@@ -7,7 +7,7 @@ __all__ = [
     'MathInterface',
 ]
 import datetime
-from typing import *
+import typing
 from protoplasm import plasm
 
 from sandbox.test import service_dc as dc
@@ -27,7 +27,7 @@ class SimpleServiceInterface:
     def nested_hello(self, my_message: dc.GreetingMessage = None) -> dc.GreetingMessage:
         raise plasm.Unimplemented()
 
-    def empty_hello(self) -> NoReturn:
+    def empty_hello(self) -> typing.NoReturn:
         raise plasm.Unimplemented()
 
 
@@ -40,6 +40,6 @@ class MathInterface:
     def subtract(self, x: int = None, y: int = None) -> int:
         raise plasm.Unimplemented()
 
-    def integer_division(self, x: int = None, y: int = None) -> Tuple[int, int]:
+    def integer_division(self, x: int = None, y: int = None) -> typing.Tuple[int, int]:
         raise plasm.Unimplemented()
 
