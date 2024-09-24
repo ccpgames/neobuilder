@@ -228,6 +228,12 @@ class ProtoField(object):
     def get_field_options(self):
         if self.is_struct():
             return f"default_factory=dict, metadata={{{self.get_metadata()}}}"
+        elif self.is_value():
+            return f"default=..., metadata={{{self.get_metadata()}}}"
+        elif self.is_list_value():
+            return f"default_factory=list, metadata={{{self.get_metadata()}}}"
+        elif self.is_null_value():
+            return f"default=None, metadata={{{self.get_metadata()}}}"
         elif self.is_map():
             return f"default_factory=dict, metadata={{{self.get_metadata()}}}"
         elif self.is_list():
@@ -280,13 +286,19 @@ class ProtoField(object):
 
     def get_type_hint(self, used_in_file: json_format.descriptor.FileDescriptor = None) -> str:
         if self.is_struct():
-            return f'typing.Dict[str, typing.Any]'
+            return 'typing.Dict[str, typing.Any]'
+        elif self.is_value():
+            return 'typing.Any'
+        elif self.is_list_value():
+            return 'typing.List[typing.Any]'
+        elif self.is_null_value():
+            return 'None'
         elif self.is_map():
             return f'typing.Dict[{self.field_descriptor.key_py_type.name}, {self.get_py_type_name(used_in_file)}]'
         elif self.is_list():
             return f'typing.List[{self.get_py_type_name(used_in_file)}]'
         elif self.is_empty():
-            return f'None'
+            return 'None'
         return self.get_py_type_name(used_in_file)
 
     def get_message_container_type(self) -> str:
@@ -304,9 +316,7 @@ class ProtoField(object):
         elif self.is_list():
             buf.append("'is_list': True")
 
-        if self.is_struct():
-            buf.append("'is_struct': True")
-        elif self.is_message():
+        if self.is_message() and not self.is_struct_value():
             buf.append("'is_obj': True")
         elif self.is_enum():
             buf.append("'is_enum': True")
@@ -333,6 +343,12 @@ class ProtoField(object):
             return 'LongDictator'
         if self.is_struct():
             return 'StructDictator'
+        if self.is_value():
+            return 'ValueDictator'
+        if self.is_list_value():
+            return 'ListValueDictator'
+        if self.is_null_value():
+            return 'NullValueDictator'
         return 'BaseDictator'
 
     def is_long(self):
@@ -343,6 +359,18 @@ class ProtoField(object):
 
     def is_struct(self):
         return bool(self.field_descriptor.kind & FieldKind.SPECIAL_STRUCT)
+
+    def is_struct_value(self):
+        return bool(self.field_descriptor.kind & FieldKind.FIELD_STRUCT_VALUES)
+
+    def is_value(self):
+        return bool(self.field_descriptor.kind & FieldKind.SPECIAL_VALUE)
+
+    def is_null_value(self):
+        return bool(self.field_descriptor.kind & FieldKind.SPECIAL_NULL_VALUE)
+
+    def is_list_value(self):
+        return bool(self.field_descriptor.kind & FieldKind.SPECIAL_LIST_VALUE)
 
     def is_duration(self):
         return bool(self.field_descriptor.kind & FieldKind.SPECIAL_DURATION)

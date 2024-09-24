@@ -12,24 +12,27 @@ from neobuilder.structs.pytype import *
 
 
 class FieldKind(enum.IntFlag):
-    UNKNOWN = 0x0000
-    DATA_SCALAR = 0x0001
-    DATA_MESSAGE = 0x0002
-    DATA_ENUM = 0x0004
+    UNKNOWN             = 0x0000
+    DATA_SCALAR         = 0x0001
+    DATA_MESSAGE        = 0x0002
+    DATA_ENUM           = 0x0004
 
-    KIND_SINGLE = 0x0010
-    KIND_LIST = 0x0020
-    KIND_MAP = 0x0040
+    KIND_SINGLE         = 0x0010
+    KIND_LIST           = 0x0020
+    KIND_MAP            = 0x0040
 
-    SPECIAL_TIMESTAMP = 0x0100
-    SPECIAL_BYTES = 0x0200
-    SPECIAL_LONG = 0x0400
-    SPECIAL_DURATION = 0x0800
-    SPECIAL_ANY = 0x1000
-    SPECIAL_EMPTY = 0x2000
-    SPECIAL_STRUCT = 0x4000
+    SPECIAL_TIMESTAMP   = 0x00100
+    SPECIAL_BYTES       = 0x00200
+    SPECIAL_LONG        = 0x00400
+    SPECIAL_DURATION    = 0x00800
+    SPECIAL_ANY         = 0x01000
+    SPECIAL_EMPTY       = 0x02000
+    SPECIAL_STRUCT      = 0x04000
+    SPECIAL_VALUE       = 0x08000
+    SPECIAL_LIST_VALUE  = 0x10000
+    SPECIAL_NULL_VALUE  = 0x20000
 
-    SPECIAL_KEYWORD = 0x10000000
+    SPECIAL_KEYWORD     = 0x10000000
 
     # scalar
     FIELD_SIMPLE = DATA_SCALAR | KIND_SINGLE
@@ -51,6 +54,8 @@ class FieldKind(enum.IntFlag):
     FIELD_MESSAGE_MAP = DATA_MESSAGE | KIND_MAP
     # map<scalar, Enum>
     FIELD_ENUM_MAP = DATA_ENUM | KIND_MAP
+
+    FIELD_STRUCT_VALUES = SPECIAL_STRUCT | SPECIAL_VALUE | SPECIAL_LIST_VALUE | SPECIAL_NULL_VALUE
 
     def __repr__(self) -> str:
         return self.name or str(self.value)
@@ -127,6 +132,12 @@ class FieldDescriptorWrapper:
                 self.kind |= FieldKind.SPECIAL_EMPTY
             elif self.value_msg.full_name == 'google.protobuf.Struct':
                 self.kind |= FieldKind.SPECIAL_STRUCT
+            elif self.value_msg.full_name == 'google.protobuf.Value':
+                self.kind |= FieldKind.SPECIAL_VALUE
+            elif self.value_msg.full_name == 'google.protobuf.ListValue':
+                self.kind |= FieldKind.SPECIAL_LIST_VALUE
+            elif self.value_msg.full_name == 'google.protobuf.NullValue':
+                self.kind |= FieldKind.SPECIAL_NULL_VALUE
             else:
                 self.kind |= FieldKind.DATA_MESSAGE
         elif self.value_field.type == ProtoType.ENUM:  # Enum
