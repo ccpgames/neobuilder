@@ -19,6 +19,9 @@ def main():
                         default='./build', nargs='?')
     parser.add_argument('-v', '--verbose', action="store_true",
                         help='Spits out DEBUG level logs')
+    parser.add_argument('-i', '--pyi', action="store_true",
+                        help='Builds *.pyi for the pb2 files as well (default=False)')
+    parser.add_argument('-I', '--include', action='append', help="Optional additional proto paths to include (can be used multiple times)", default=[])
 
     args = parser.parse_args()
 
@@ -29,6 +32,8 @@ def main():
         major=args.major,
         patch=args.patch,
         verbose=args.verbose,
+        include_pyi=args.pyi,
+        extra_includes=args.include,
     )
     n.build()
 

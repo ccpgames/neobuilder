@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [5.3.1] - 2024-10-15
+
+### Added
+
+- The `-i`/`--pyi` option to the CLI to include building `*.pyi` files for the generated `*_pb2.py` files
+- The ability to include multiple additional proto paths with `-I <path>`/`--include <path>` flags in the CLI
+
+
 ## [5.3.0] - 2024-09-24
 
 ### Added

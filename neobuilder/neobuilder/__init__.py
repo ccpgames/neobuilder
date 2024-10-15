@@ -35,12 +35,16 @@ class NeoBuilder(object):
                  build_root: str = './build',
                  major: bool = False,
                  patch: bool = False,
-                 verbose: bool = False):
+                 verbose: bool = False,
+                 include_pyi: bool = False,
+                 extra_includes: Optional[List[str]] = None):
 
         self.package = package
 
         self.protopath = protopath.replace('\\', '/')
         self.build_root = build_root.replace('\\', '/')
+        self.extra_includes = [i.replace('\\', '/') for i in (extra_includes or [])]
+        self.include_pyi = include_pyi
 
         self.major = major
         self.patch = patch
@@ -51,8 +55,13 @@ class NeoBuilder(object):
         self.proto_include = self._get_basic_proto_path()
         self.proto_build_args = ['protoc', f'-I{self.protopath}/']
         if self.proto_include:
-            self.proto_build_args.append('-I{}'.format(self.proto_include))
+            self.proto_build_args.append(f'-I{self.proto_include}')
+        if self.extra_includes:
+            for i in self.extra_includes:
+                self.proto_build_args.append(f'-I{i}')
         self.proto_build_args.append(f'--python_out={self.build_root}')
+        if self.include_pyi:
+            self.proto_build_args.append(f'--pyi_out={self.build_root}')
 
         self.last_version = None
         self._next_version = None
