@@ -61,7 +61,7 @@ The first line in the file should be the semantic version number `x.y.z.a`
 ## More stuff
 
 ```
-usage: neobuild [-h] [-m | -p] [-b [BUILDROOT]] [-v] package [protopath]
+usage: neobuilder.py [-h] [-m | -p] [-b [BUILDROOT]] [-v] [-i] [-I INCLUDE] package [protopath]
 
 Builds neobuf packages with protoplasm.
 
@@ -69,11 +69,16 @@ positional arguments:
   package               Package name
   protopath             Path to the root of the protobuf files (default="./proto")
 
-options:
+optional arguments:
   -h, --help            show this help message and exit
   -m, --major           Bump the major version number instead of the minor
   -p, --patch           Bump the patch version number instead of the minor
   -b [BUILDROOT], --buildroot [BUILDROOT]
                         Path to the root of the output build files (default="./build")
   -v, --verbose         Spits out DEBUG level logs
+  -i, --pyi             Builds *.pyi for the pb2 files as well (default=False)
+  -I INCLUDE, --include INCLUDE
+                        Optional additional proto paths to include (can be used multiple times)
+
+Neobuilder v5.3.1 - Protoplasm v5.2.0
 ```
